@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ScreenCalculator extends StatelessWidget {
+  final String input;
+  final String output;
   const ScreenCalculator({
     super.key,
+    required this.input,
+    required this.output,
   });
 
   @override
@@ -16,11 +21,15 @@ class ScreenCalculator extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  '42',
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    input,
+                    textAlign: TextAlign.right,
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                      fontSize: input.length > 12 ? 35 : 42,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
@@ -29,10 +38,10 @@ class ScreenCalculator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  '0',
+                  output,
                   style: TextStyle(
                     fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    color: Colors.grey.shade700,
                   ),
                 ),
               ],

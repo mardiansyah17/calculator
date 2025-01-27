@@ -5,47 +5,50 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class KeyPadButton extends StatelessWidget {
   final KeyModel keyButton;
+  final Function() onPressed;
   const KeyPadButton({
     super.key,
     required this.keyButton,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     late Color labelColor;
     late Color backgroundColor;
-    switch (keyButton.key) {
-      case KeyType.ac:
+    switch (keyButton.value) {
+      case "c":
         labelColor = AppPallete.primary;
-        backgroundColor = Colors.white;
-      case KeyType.equal:
-        backgroundColor = AppPallete.primary;
+        backgroundColor = colorScheme.surface;
+      case "=":
+        backgroundColor = colorScheme.primaryContainer;
         labelColor = Colors.white;
-      case KeyType.delete:
-        backgroundColor = Colors.white;
+      case "del":
+        backgroundColor = colorScheme.surface;
         labelColor = AppPallete.primary;
-      case KeyType.divide:
-        backgroundColor = Colors.white;
+      case "/":
+        backgroundColor = colorScheme.surface;
         labelColor = AppPallete.primary;
-
-      case KeyType.multiply:
-        backgroundColor = Colors.white;
+      case "%":
+        backgroundColor = colorScheme.surface;
         labelColor = AppPallete.primary;
-      case KeyType.minus:
-        backgroundColor = Colors.white;
+      case "+/-":
+        backgroundColor = colorScheme.surface;
         labelColor = AppPallete.primary;
-      case KeyType.plus:
-        backgroundColor = Colors.white;
+      case "x":
+        backgroundColor = colorScheme.surface;
         labelColor = AppPallete.primary;
-      case KeyType.plusMinus:
-        backgroundColor = Colors.white;
+      case "-":
+        backgroundColor = colorScheme.surface;
         labelColor = AppPallete.primary;
-      case KeyType.percent:
-        backgroundColor = Colors.white;
+      case "+":
+        backgroundColor = colorScheme.surface;
         labelColor = AppPallete.primary;
       default:
-        labelColor = Colors.black;
-        backgroundColor = Colors.white;
+        labelColor = colorScheme.onSurface;
+        backgroundColor = colorScheme.surface;
     }
 
     return Container(
@@ -61,7 +64,7 @@ class KeyPadButton extends StatelessWidget {
             ),
           ]),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           overlayColor: Colors.grey.withValues(alpha: 0.050),
           backgroundColor: Colors.transparent,
